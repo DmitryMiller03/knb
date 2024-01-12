@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#303136"
-    tools:context=".SecondActivity">
+    tools:context="com.example.knb.SecondActivity">
 
     <ImageView
-        android:id="@+id/result_image"
+        android:id="@+id/res_image"
         android:layout_width="356dp"
         android:layout_height="122dp"
         android:contentDescription="Null"
-        app:layout_constraintBottom_toTopOf="@+id/player_move"
+        app:layout_constraintBottom_toTopOf="@+id/player"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comp_move"
+        app:layout_constraintTop_toBottomOf="@+id/computer"
         app:srcCompat="@drawable/tieimg" />
 
     <TextView
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/player_move"
+        android:id="@+id/player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/comp_move"
+        android:id="@+id/computer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"

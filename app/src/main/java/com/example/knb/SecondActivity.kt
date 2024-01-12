@@ -1,31 +1,32 @@
-package com.example.lesson2
+package com.example.knb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import com.example.lesson2.R
 
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        this.showResultRound()
-        this.showMove()
+        this.roundResult()
+        this.movement()
     }
 
-    private fun showResultRound() {
-        val resultImg = findViewById<ImageView>(R.id.result_image)
+    private fun roundResult() {
+        val resultImg = findViewById<ImageView>(R.id.res_image)
         val result = intent.getStringExtra("RESULT")
         if (result == "win")
             resultImg.setImageResource(R.drawable.winimg)
-        else if (result == "loose")
+        else if (result == "lose")
             resultImg.setImageResource(R.drawable.looseimg)
         else if (result == "tie")
             resultImg.setImageResource(R.drawable.tieimg)
     }
 
-    private fun showMove() {
-        val playerMove = findViewById<ImageView>(R.id.player_move)
-        val compMove = findViewById<ImageView>(R.id.comp_move)
+    private fun movement() {
+        val playerMove = findViewById<ImageView>(R.id.player)
+        val compMove = findViewById<ImageView>(R.id.computer)
         val signPlayer = intent.getStringExtra("SIGN_PLAYER")
         val signComp = intent.getStringExtra("SIGN_COMP")
 

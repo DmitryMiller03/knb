@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import com.example.knb.SecondActivity
 import kotlin.random.Random
 
 
@@ -12,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val rockBtn = findViewById<ImageButton>(R.id.btn_rock)
-        val cutBtn = findViewById<ImageButton>(R.id.btn_scis)
-        val paperBtn = findViewById<ImageButton>(R.id.btn_paper)
+        val rockBtn = findViewById<ImageButton>(R.id.rock)
+        val cutBtn = findViewById<ImageButton>(R.id.cut)
+        val paperBtn = findViewById<ImageButton>(R.id.a4)
 
         var signPlayer: String
 
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             else if ("ROCKCUT" == move)
                 return "win"
             else
-                return "loose"
+                return "lose"
         }
         else return "tie"
     }
