@@ -16,31 +16,31 @@ class MainActivity : AppCompatActivity() {
         val cutBtn = findViewById<ImageButton>(R.id.btn_scis)
         val paperBtn = findViewById<ImageButton>(R.id.btn_paper)
 
-        var signPlayer: ImageSign
+        var signPlayer: String
 
         rockBtn.setOnClickListener {
-            signPlayer = ImageSign.ROCK
+            signPlayer = "ROCK"
             val signComp = this.getRandomSign()
             val result = this.analyzeMove(signPlayer, signComp)
             this.startSecondActivity(result, signPlayer, signComp)
         }
 
         cutBtn.setOnClickListener {
-            signPlayer = ImageSign.CUT
+            signPlayer = "CUT"
             val signComp = this.getRandomSign()
             val result = this.analyzeMove(signPlayer, signComp)
             this.startSecondActivity(result, signPlayer, signComp)
         }
 
         paperBtn.setOnClickListener {
-            signPlayer = ImageSign.PAPER
+            signPlayer = "PAPER"
             val signComp = this.getRandomSign()
             val result = this.analyzeMove(signPlayer, signComp)
             this.startSecondActivity(result, signPlayer, signComp)
         }
     }
 
-    private fun startSecondActivity(result: String, signPlayer: ImageSign, signComp: ImageSign) {
+    private fun startSecondActivity(result: String, signPlayer: String, signComp: String) {
         val resultIntent = Intent(this, SecondActivity::class.java)
         resultIntent.putExtra("RESULT", result)
         resultIntent.putExtra("SIGN_PLAYER", signPlayer.toString().lowercase())
@@ -48,47 +48,33 @@ class MainActivity : AppCompatActivity() {
         startActivity(resultIntent)
     }
 
-    private fun getRandomSign(): ImageSign {
-        var signComp: ImageSign
+    private fun getRandomSign(): String {
+        var signComp: String
         val randomNumber = Random.nextInt(1, 4)
         if (randomNumber == 1) {
-            signComp = ImageSign.ROCK
+            signComp = "ROCK"
         }
         else if (randomNumber == 2) {
-            signComp = ImageSign.CUT
+            signComp = "CUT"
         }
         else {
-            signComp = ImageSign.PAPER
+            signComp = "PAPER"
         }
         return signComp
     }
 
-    private fun analyzeMove(signPlayer: ImageSign, signComp: ImageSign): String{
-        if (!this.isEqual(signPlayer, signComp)) {
-            if (this.isWinner(signPlayer, signComp)) {
+    private fun analyzeMove(signPlayer: String, signComp: String): String{
+        val move = signPlayer + signComp
+        if (signPlayer != signComp) {
+            if ("PAPERROCK" == move)
                 return "win"
-            } else {
+            else if ("CUTPAPER" == move)
+                return "win"
+            else if ("ROCKCUT" == move)
+                return "win"
+            else
                 return "loose"
-            }
         }
-            else {
-                return "tie"
-            }
+        else return "tie"
     }
-
-    private fun isEqual(signPlayer: ImageSign, signComp: ImageSign): Boolean {
-        return signPlayer == signComp
-    }
-
-    private fun isWinner(signPlayer: ImageSign, signComp: ImageSign): Boolean {
-        val move = signPlayer.toString() + signComp
-        if (ImageSign.ROCK.toString() + ImageSign.PAPER == move)
-            return false
-        else if (ImageSign.PAPER.toString() + ImageSign.CUT == move)
-            return false
-        else if (ImageSign.CUT.toString() + ImageSign.ROCK == move)
-            return false
-        return true
-    }
-
 }
